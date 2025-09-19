@@ -12,13 +12,11 @@ provider "aws" {
   region = "us-east-1"
 }
 
-# S3 Bucket (Frontend + Audio)
 module "s3" {
   source      = "./modules/s3"
   bucket_name = "theo123-text-to-speech"
 }
 
-# Lambda function
 module "lambda" {
   source            = "./modules/lambda"
   bucket_name       = module.s3.bucket_name
@@ -26,8 +24,8 @@ module "lambda" {
   lambda_source_dir = "/Terraform/lambda/lambda.zip"
 }
 
-# API Gateway
 module "api" {
   source     = "./modules/api"
   lambda_arn = module.lambda.lambda_arn
 }
+
