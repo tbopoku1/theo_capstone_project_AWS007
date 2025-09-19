@@ -37,7 +37,7 @@ resource "aws_s3_bucket_policy" "public_read" {
   depends_on = [aws_s3_bucket_public_access_block.this]
 }
 
-# Lifecycle: auto-expire audio files after 7 days
+
 resource "aws_s3_bucket_lifecycle_configuration" "this" {
   bucket = aws_s3_bucket.this.id
 
@@ -54,3 +54,4 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
     }
   }
 }
+
