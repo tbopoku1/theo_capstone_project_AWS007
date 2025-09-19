@@ -26,15 +26,12 @@ form.addEventListener('submit', async (e)=>{
     const data = await res.json();
     if(!res.ok) throw new Error(data.error || 'Synthesis failed');
 
-    // Lambda returns { public_url, presigned_url }
     latestAudioUrl = data.presigned_url || data.public_url;
     if(!latestAudioUrl) throw new Error('No audio URL returned');
 
-    // Update audio player
     player.src = latestAudioUrl;
     player.play().catch(()=>{ /* autoplay may be blocked */ });
 
-    // Update download button
     downloadBtn.style.display = 'inline-block';
     downloadBtn.onclick = () => {
       const a = document.createElement('a');
@@ -52,3 +49,4 @@ form.addEventListener('submit', async (e)=>{
     submitBtn.disabled = false;
   }
 });
+
