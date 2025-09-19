@@ -17,7 +17,6 @@ def lambda_handler(event, context):
         if not text:
             return _response(400, {"error": "No text provided"})
 
-        # Generate audio with Polly
         response = polly.synthesize_speech(
             Text=text,
             OutputFormat="mp3",
@@ -32,7 +31,6 @@ def lambda_handler(event, context):
             ContentType="audio/mpeg"
         )
 
-        # Build file URL
         public_url = f"https://{BUCKET_NAME}.s3.amazonaws.com/{audio_key}"
 
         return _response(200, {"public_url": public_url})
@@ -51,3 +49,4 @@ def _response(status, body):
         },
         "body": json.dumps(body)
     }
+
