@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Serverless Text-to-Speech (AWS)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="card header">
+      <h1>Text-to-Speech</h1>
+      <p class="muted">Type text and get a natural-sounding MP3 of your choice</p>
+    </header>
+
+    <section class="card form">
+      <form id="synthForm">
+        <label for="text">Text (a few hundreds of words)</label>
+        <textarea id="text" rows="6" placeholder="Type something..."></textarea>
+
+        <div class="row">
+          <div class="col">
+            <label for="voice">Voice</label>
+            <select id="voice">
+              <option>Joanna</option>
+              <option>Matthew</option>
+              <option>Kimberly</option>
+              <option>Justin</option>
+              <option>Emma</option>
+            </select>
+          </div>
+          <div class="col align-end">
+            <button id="submitBtn" class="btn">Convert to Speech</button>
+          </div>
+        </div>
+      </form>
+
+      <div id="status" class="muted">Ready</div>
+    </section>
+
+    <section class="card results">
+    <h3>Result</h3>
+    <audio id="player" controls></audio>
+    <!-- NEW download button -->
+    <button id="downloadBtn" class="btn" style="display:none; margin-top:10px;">
+        Download Audio
+    </button>
+    </section>
+
+
+    <footer class="card footer muted">
+      <small>Powered by Theo </small>
+    </footer>
+  </main>
+
+  <script>
+    window.API_BASE = "http://theo123-text-to-speech.s3-website-us-east-1.amazonaws.com"; 
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
